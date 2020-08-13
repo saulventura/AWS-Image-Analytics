@@ -1,6 +1,6 @@
 # Initial required package 
 #if (!require("dplyr")) install.packages("dplyr"); library(dplyr)
-setwd("C:\\Saul\\Portfolio\\ShinyAWS")
+#setwd("C:\\Saul\\Portfolio\\ShinyAWS")
 
 #options(shiny.trace = TRUE)  
 
@@ -10,8 +10,8 @@ options(shiny.maxRequestSize = 300*1024^2)
 
 #List all required packages - dplyr
 packages = c("shiny", "shinydashboard", "shinyjs", "DT",  "readr", "shinycssloaders", "shinybusy", "reshape2",
-             "shinyalert","ggplot2", "htmlwidgets","plotly","shinyWidgets", "tidyverse","countrycode","dplyr",
-             "plyr","stringr", "leaflet","maps","rgeos","rworldmap","rworldxtra","lubridate")
+             "shinyalert","ggplot2", "htmlwidgets","plotly","shinyWidgets", "tidyverse","dplyr",
+             "plyr","stringr","lubridate")
 
 
 
@@ -307,7 +307,9 @@ server = function(input, output, session) {
         req(input$file_input)
         
         
-        USER$fd_image_full_path = paste0("C:\\Saul\\Portfolio\\AWSImageAnalytics\\",USER$fd_image)
+       # USER$fd_image_full_path = paste0("C:\\Saul\\Portfolio\\AWSImageAnalytics\\",USER$fd_image)
+        USER$fd_image_full_path = paste0("",USER$fd_image)
+        
         
         file.copy(input$file_input$datapath, USER$fd_image_full_path   , overwrite = TRUE)
         
@@ -352,10 +354,14 @@ def show_faces(photo,bucket):
    # session = boto3.Session(
     #aws_access_key_id=settings.AWS_SERVER_PUBLIC_KEY,
    # aws_secret_access_key=settings.AWS_SERVER_SECRET_KEY)
+   
+   AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', '') 
+   AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', '')
+
     
     ##print(1)
     #client=boto3.client('rekognition', region_name='us-east-1')
-    client=boto3.client('rekognition',  aws_access_key_id='AKIA2BQGQZGLWOU55HEM', aws_secret_access_key='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', region_name='us-east-1')
+    client=boto3.client('rekognition',  aws_access_key_id=AWS_ACCESS_KEY_ID, aws_secret_access_key=AWS_SECRET_ACCESS_KEY, region_name='us-east-1')
 
     imageFile= photo 
 
@@ -419,7 +425,8 @@ def show_faces(photo,bucket):
     
     
     plt.axis('off')
-    plt.savefig('C:/Saul/Portfolio/AWSImageAnalytics/www/images/' +'tmp_'+ imageFile, bbox_inches='tight',transparent=True, pad_inches=0, dpi=200)
+   # plt.savefig('C:/Saul/Portfolio/AWSImageAnalytics/www/images/' +'tmp_'+ imageFile, bbox_inches='tight',transparent=True, pad_inches=0, dpi=200)
+    plt.savefig('/www/images/' +'tmp_'+ imageFile, bbox_inches='tight',transparent=True, pad_inches=0, dpi=200)
     img1='tmp_'+ imageFile
     
     
@@ -511,7 +518,8 @@ faces_count = results[1]
             # style = "width: 400px;"
             ##  style = "width: 100%;"
             ## )
-            list(src = paste0('C:/Saul/Portfolio/ShinyAWS/www/images/', as.character(py$photo1)) ,  alt = "This is alternate text"   )
+            #list(src = paste0('C:/Saul/Portfolio/ShinyAWS/www/images/', as.character(py$photo1)) ,  alt = "This is alternate text"   )
+            list(src = paste0('/www/images/', as.character(py$photo1)) ,  alt = "This is alternate text"   )
             
         }
     }, deleteFile = FALSE)
