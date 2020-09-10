@@ -2,8 +2,8 @@
 
 Hosted in
 
-https://saulventura.shinyapps.io/AWSImageAnalytics/
-https://saulventura.shinyapps.io/AWSImageAnalytics1/
+* https://saulventura.shinyapps.io/AWSImageAnalytics/
+* https://saulventura.shinyapps.io/AWSImageAnalytics1/
 
 ![App](appscreen.jpg)
 
