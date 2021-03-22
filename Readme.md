@@ -1,7 +1,7 @@
 # Shiny AWS Image Analytics
 
 
-![Demo](https://github.com/saulventura/Dashboard-COVID-19/blob/master/demo.gif)
+![Demo](https://github.com/saulventura/AWS-Image-Analytics/blob/master/demo.gif)
 
 
 Hosted in
